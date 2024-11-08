@@ -4,5 +4,8 @@ public enum Genre {
     Fiction,
     NonFiction,
     SciFi,
-
+    Fantasy,
+    Dystopian,
+    Action,
+    Mystery
 }

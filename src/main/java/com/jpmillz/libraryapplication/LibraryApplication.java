@@ -35,7 +35,7 @@ public class LibraryApplication extends Application {
         topBox.setPadding(new Insets(15, 15, 15, 15));
         topBox.setAlignment(Pos.CENTER);
         topBox.setPrefSize(800, 20);
-        topBox.setStyle("-fx-border-color: black;");
+        topBox.setStyle("-fx-border-radius: 20; -fx-border-color: black; -fx-padding: 20, 20, 20, 20;");
         Label mainLabel = new Label("Library Management Application");
         mainLabel.setFont(new Font(30));
         mainLabel.setTextAlignment(TextAlignment.CENTER);
@@ -46,12 +46,17 @@ public class LibraryApplication extends Application {
 
         VBox navMenu = new VBox();
         navMenu.setPadding(new Insets(20, 20, 20, 20));
-        Button homeButton = new Button("Home Screen");
-        Button booksButton = new Button("View Books");
+        Button homeButton = new Button("Dashboard");
+        homeButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
+        Button booksButton = new Button("Browse \n Books");
+        booksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
+        Button addBooksButton = new Button("Add Books");
+        addBooksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
+
         navMenu.setAlignment(Pos.CENTER);
         navMenu.setSpacing(10);
-        navMenu.setStyle("-fx-border-color: black;");
-        navMenu.getChildren().addAll(homeButton, booksButton);
+        navMenu.setStyle("-fx-border-radius: 20; -fx-border-color: black;");
+        navMenu.getChildren().addAll(homeButton, booksButton, addBooksButton);
 
         mainLayout.setLeft(navMenu);
         mainLayout.setCenter(addBookView.getView());
