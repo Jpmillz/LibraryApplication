@@ -1,5 +1,6 @@
 package com.jpmillz.libraryapplication;
 
+import com.jpmillz.libraryapplication.logic.BookHolder;
 import com.jpmillz.libraryapplication.views.AddBookView;
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -22,14 +23,21 @@ import java.awt.*;
 
 public class LibraryApplication extends Application {
 
+    private BookHolder books;
+
     public static void main(String[] args) {
         launch(LibraryApplication.class);
     }
 
     @Override
+    public void init() throws Exception {
+        books = new BookHolder();
+    }
+
+    @Override
     public void start(Stage stage) throws Exception {
         BorderPane mainLayout = new BorderPane();
-        AddBookView addBookView = new AddBookView();
+        AddBookView addBookView = new AddBookView(books);
 
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 15, 15, 15));
