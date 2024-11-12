@@ -2,6 +2,7 @@ package com.jpmillz.libraryapplication;
 
 import com.jpmillz.libraryapplication.logic.BookHolder;
 import com.jpmillz.libraryapplication.views.AddBookView;
+import com.jpmillz.libraryapplication.views.BookListView;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -38,6 +39,7 @@ public class LibraryApplication extends Application {
     public void start(Stage stage) throws Exception {
         BorderPane mainLayout = new BorderPane();
         AddBookView addBookView = new AddBookView(books);
+        BookListView bookListView = new BookListView(books);
 
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 15, 15, 15));
@@ -58,6 +60,7 @@ public class LibraryApplication extends Application {
         homeButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
         Button booksButton = new Button("Browse \n Books");
         booksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
+        booksButton.setOnAction(actionEvent -> mainLayout.setCenter(bookListView.getView()));
         Button addBooksButton = new Button("Add Books");
         addBooksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
 
