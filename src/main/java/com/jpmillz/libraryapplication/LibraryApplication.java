@@ -19,6 +19,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 
@@ -62,6 +63,7 @@ public class LibraryApplication extends Application {
         booksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
         booksButton.setOnAction(actionEvent -> mainLayout.setCenter(bookListView.getView()));
         Button addBooksButton = new Button("Add Books");
+        addBooksButton.setOnAction(event -> mainLayout.setCenter(addBookView.getView()));
         addBooksButton.setStyle("-fx-pref-height: 80px; -fx-pref-width: 80px;");
 
         navMenu.setAlignment(Pos.CENTER);
@@ -71,6 +73,9 @@ public class LibraryApplication extends Application {
 
         mainLayout.setLeft(navMenu);
         mainLayout.setCenter(addBookView.getView());
+        mainLayout.setPadding(new Insets(10));
+        BorderPane.setMargin(topBox, new Insets(10));
+        BorderPane.setMargin(navMenu, new Insets(10));
 
         Scene scene = new Scene(mainLayout, 800, 500);
         stage.setTitle("Library Management Application");

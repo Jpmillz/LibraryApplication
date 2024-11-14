@@ -5,6 +5,7 @@ import com.jpmillz.libraryapplication.domain.Genre;
 import com.jpmillz.libraryapplication.logic.BookHolder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,8 +24,8 @@ public class BookListView {
 
     public Parent getView(){
         BorderPane layout = new BorderPane();
-        TableView booksTable = new TableView<>();
-        booksTable.setItems(FXCollections.observableList(books.getBooks()));
+        ObservableList<Book> obserList = FXCollections.observableList(books.getBooks());
+        TableView booksTable = new TableView<>(obserList);
 
         TableColumn<Book, String> nameColumn = new TableColumn<>("Book Name");
         nameColumn.setCellValueFactory(data -> data.getValue().bookNameProperty());
@@ -39,9 +40,10 @@ public class BookListView {
 
 
         booksTable.getColumns().setAll(nameColumn, authorColumn, pageCountColumn, genreColumn, isnbColumn);
+        booksTable.setPadding(new Insets(20));
 
         layout.setCenter(booksTable);
-        
+
         return layout;
     }
 }
