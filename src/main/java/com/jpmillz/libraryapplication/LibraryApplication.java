@@ -1,5 +1,6 @@
 package com.jpmillz.libraryapplication;
 
+import com.jpmillz.libraryapplication.io.LibraryFileHelper;
 import com.jpmillz.libraryapplication.logic.BookHolder;
 import com.jpmillz.libraryapplication.views.AddBookView;
 import com.jpmillz.libraryapplication.views.BookListView;
@@ -22,10 +23,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class LibraryApplication extends Application {
 
     private BookHolder books;
+    private LibraryFileHelper fileHelper;
 
     public static void main(String[] args) {
         launch(LibraryApplication.class);
@@ -33,7 +37,10 @@ public class LibraryApplication extends Application {
 
     @Override
     public void init() throws Exception {
-        books = new BookHolder();
+        fileHelper = new LibraryFileHelper();
+        books = new BookHolder(fileHelper);
+        fileHelper.setHolder(books);
+
     }
 
     @Override
@@ -41,6 +48,8 @@ public class LibraryApplication extends Application {
         BorderPane mainLayout = new BorderPane();
         AddBookView addBookView = new AddBookView(books);
         BookListView bookListView = new BookListView(books);
+
+        mainLayout.setStyle("-fx-background-color: gray");
 
         HBox topBox = new HBox();
         topBox.setPadding(new Insets(15, 15, 15, 15));
